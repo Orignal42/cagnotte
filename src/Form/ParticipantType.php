@@ -15,7 +15,10 @@ class ParticipantType extends AbstractType
         $builder
             ->add('name')
             ->add('email')
-            ->add('isAnonymous', CheckboxType::class)
+            ->add('is_anonymous', CheckboxType::class, [
+                'label'    => 'Masquer mon identité auprès des autres participants',
+                'required' => false,
+            ]);
         ;
     }
 

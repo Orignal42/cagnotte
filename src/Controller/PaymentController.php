@@ -39,13 +39,18 @@ class PaymentController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('campaign_show',[
-                'id'=>$campaign->getId()
+                'id'=>$campaign->getId(),
+                
             ]);
         }
 
         return $this->render('payment/new.html.twig', [
             'payment' => $payment,
+            'campaign'=>$campaign,
             'form' => $form->createView(),
+            'title'=>$campaign->getTitle(),
+            'name'=>$campaign->getName(),
+
         ]);
     }
 }
