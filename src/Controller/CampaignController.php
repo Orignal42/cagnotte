@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Campaign;
+use App\Entity\Payment;
+use App\Entity\Participant;
 use App\Form\CampaignType;
 use App\Repository\CampaignRepository;
 use DateTime;
@@ -57,8 +58,19 @@ class CampaignController extends AbstractController
      */
     public function show(Campaign $campaign): Response
     {
+        $participantsRepository = $this->getDoctrine()
+                                        ->getRepository(Participant::class);
+        $participants = $participantsRepository->findBy(['campaign_id'=>$campaign->getId()]);
+
+        $paymentRepository = $this->getDoctrine()
+                                ->getRepository(Payment::class);
+
+        $payments = $paymentRepository->findBy(['participant'=>$participants]);
+
         return $this->render('campaign/show.html.twig', [
             'campaign' => $campaign,
+            'payments' => $payments,
+            'participant'=>$participants,
         ]);
     }
 
