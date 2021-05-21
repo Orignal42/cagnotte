@@ -114,16 +114,43 @@
                         </tr>
                         </thead>
 
-                        <tbody>
+                       <tbody>
                         <tr>
-                             {% for participant in participant %}
-                            <td>{{participant.email}}</td>
+                            <td>
+                            {% for participant in participant %}
+
+                                {% if participant.isAnonymous == 0 %}
+
+                                    {{participant.email}}
+
+                                {% else %}
+
+                                <span style='font-style:italic;'>Participant masqué</span>
+
+                            {% endif %}
+
+                            <br>
+                            
                             {% endfor %}
-                                 {% for payment in payments %}
-                            <td>{{payment.amount}}</td>
+
+                            </td>
+
+
+                            <td>
+
+                            {% for payment in payments %}
+
+                            {{payment.amount}} €
+
+                            <br>
+
                             {% endfor %}
+
+                            </td>
+
                         </tr>
                         </tbody>
+                    
                     </table>
                 </div>
             </div>
@@ -140,37 +167,7 @@
         </div>
         <div class="parallax"><img src="{{asset('assets/images/10.jpg')}}" alt="Une campagne pensée pour vous"></div>
     </div>
-  <table class="table">
-            <tr>
-                <th>Id</th>
-                <td>{{ campaign.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ campaign.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ campaign.content }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ campaign.createdAt ? campaign.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ campaign.updatedAt ? campaign.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Goal</th>
-                <td>{{ campaign.goal }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ campaign.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+
 
     <a href="{{ path('campaign_index') }}">back to list</a>
 
