@@ -33,9 +33,10 @@ class Payment
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=participant::class, inversedBy="payments")
+     * @ORM\OneToOne(targetEntity=Participant::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $participant_id;
+    private $participant;
 
     public function getId(): ?int
     {
@@ -78,14 +79,14 @@ class Payment
         return $this;
     }
 
-    public function getParticipantId(): ?participant
+    public function getParticipant(): ?Participant
     {
-        return $this->participant_id;
+        return $this->participant;
     }
 
-    public function setParticipantId(?participant $participant_id): self
+    public function setParticipant(Participant $participant): self
     {
-        $this->participant_id = $participant_id;
+        $this->participant = $participant;
 
         return $this;
     }

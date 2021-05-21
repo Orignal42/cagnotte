@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Campaign;
 use App\Form\CampaignType;
 use App\Repository\CampaignRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ class CampaignController extends AbstractController
 {
     /**
      * @Route("/", name="campaign_index", methods={"GET"})
+     * 
      */
     public function index(CampaignRepository $campaignRepository): Response
     {
@@ -35,6 +37,8 @@ class CampaignController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $campaign->setCreatedAt(new DateTime());
+            $campaign->setUpdatedAt(new DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($campaign);
             $entityManager->flush();

@@ -30,12 +30,7 @@ class Participant
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Payment::class, mappedBy="participant_id")
-     */
-    private $payments;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=campaign::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Campaign::class, inversedBy="participants")
      */
     private $campaign_id;
 
@@ -78,42 +73,13 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Payment[]
-     */
-    public function getPayments(): Collection
-    {
-        return $this->payments;
-    }
 
-    public function addPayment(Payment $payment): self
-    {
-        if (!$this->payments->contains($payment)) {
-            $this->payments[] = $payment;
-            $payment->setParticipantId($this);
-        }
-
-        return $this;
-    }
-
-    public function removePayment(Payment $payment): self
-    {
-        if ($this->payments->removeElement($payment)) {
-            // set the owning side to null (unless already changed)
-            if ($payment->getParticipantId() === $this) {
-                $payment->setParticipantId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getCampaignId(): ?campaign
+    public function getCampaignId(): ?Campaign
     {
         return $this->campaign_id;
     }
 
-    public function setCampaignId(?campaign $campaign_id): self
+    public function setCampaignId(?Campaign $campaign_id): self
     {
         $this->campaign_id = $campaign_id;
 
