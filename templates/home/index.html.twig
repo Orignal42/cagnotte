@@ -97,10 +97,7 @@
                 <div class="col s12">
                     <div class="carousel">
                     {% for campaign in campaigns %}
-                        {% for payment in payments %}
-                        {% set count =0%}
-                         {% set totalAmount =0%}
-                         
+                        
                         <a class="carousel-item" href="#one!">
                             <div class="card center">
                                 <div class="card-content">
@@ -109,25 +106,28 @@
                                 </div>
                                 <div class="card-action">
                                
-                                 
+                                    
                                     <div class="row black-text">
                                         <div class="col s6">
-                                            <i class="material-icons teal-text">account_circle</i> <b>{{ count }}</b>
+                                            {% for payment in payments %}
+                                             <i class="material-icons teal-text">account_circle</i> <b>{{ countParticipant }}}</b>
                                         </div>
                                         <div class="col s6">
-                                            <i class="material-icons teal-text">euro_symbol</i> <b>{{ totalAmount }}</b>
+                                            <i class="material-icons teal-text">euro_symbol</i> <b>350</b>
                                         </div>
                                     </div>
-
+                                                                         
                                 </div>
+                            
                                 <div class="progress">
                                     <div class="determinate" style="width: 70%"></div>
                                 </div>
+                                  
                             </div>
+                          {% endfor %}
                         </a>
-                      {% endfor %}
-                                              {% endfor %}
-                      
+                     
+                    {% endfor %}
                         </a>
                     </div>
                 </div>
