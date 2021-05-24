@@ -98,7 +98,7 @@
                     <div class="carousel">
                     {% for campaign in campaigns %}
                         
-                        <a class="carousel-item" href="#one!">
+                        <a class="carousel-item" href="{{ path('campaign_show',{'id': campaign.id })}}">
                             <div class="card center">
                                 <div class="card-content">
                                     <span class="card-title teal-text">{{campaign.title}}</span>
@@ -109,24 +109,38 @@
                                     
                                     <div class="row black-text">
                                         <div class="col s6">
-                                            {% for payment in payments %}
-                                             <i class="material-icons teal-text">account_circle</i> <b>{{ countParticipant }}}</b>
+                                         
+                                               {% set count = 0 %}
+
+                                                {% set totalAmount = 0 %}
+
+                                                {% for payment in payments %}
+                                                 {% if payment.participant.campaignId.id == campaign.id %}
+                                                    {% set totalAmount = totalAmount + payment.amount %}
+                                                    
+                                                    {% set count = count + 1 %}
+                                                    
+                                                    {% endif %} 
+                                                {% endfor %}
+
+           
+                                             <i class="material-icons teal-text">account_circle</i> <b>{{count }}</b>
                                         </div>
                                         <div class="col s6">
-                                            <i class="material-icons teal-text">euro_symbol</i> <b>350</b>
+                                            <i class="material-icons teal-text">euro_symbol</i> <b>{{totalAmount}}</b>
                                         </div>
                                     </div>
                                                                          
                                 </div>
-                            
+                            {% set porcentAmount = totalAmount * 100 / campaign.Goal %}
                                 <div class="progress">
-                                    <div class="determinate" style="width: 70%"></div>
+                                    <div class="determinate" style="width: {{ porcentAmount}}%"></div>
                                 </div>
                                   
                             </div>
-                          {% endfor %}
+                          
                         </a>
-                     
+                   
                     {% endfor %}
                         </a>
                     </div>

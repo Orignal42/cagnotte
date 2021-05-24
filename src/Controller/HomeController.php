@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Campaign;
+use App\Entity\Payment;
+use App\Entity\Participant;
 
 use App\Repository\CampaignRepository;
 use App\Repository\PaymentRepository;
