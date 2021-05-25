@@ -1,10 +1,21 @@
 {{ form_start(form) }}
        <h5 class="center">Votre identité</h5>
-     <div class="input-field col s12 l12">
-         {{ form_widget(form.amount)}}
-         {{ form_label(form.amount, 'votre participation', {
-            'label_attr': {'class': 'montant'}
+     <div class="input-field col s12 l6">
+
+        {% if amount is defined %}
+            {{ form_widget(form.amount, {
+                'attr': {'min': '1' , 'value' : amount}
+            }) }}
+        {% else %}
+            {{ form_widget(form.amount, {
+                'attr': {'min': '1'}
+            }) }}
+        {% endif %}
+
+         {{ form_label(form.amount, 'montant', {
+            'label_attr': {'class': 'amount'}
         }) }}
+
     </div>
 
         <div class="input-field col s12 l12">
@@ -19,45 +30,38 @@
             'label_attr': {'class': 'mail'}
         }) }}
     </div>
-  
-
-                      
-                    
+                  
                          
-                            <div class="clearfix"></div>
-                            <h5 class="center">Paiement</h5>
-                            <div class="input-field col s12">
-                                <input id="card_name" type="text" class="validate">
-                                <label for="card_name">Nom sur la carte</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="card_number" type="text" class="validate">
-                                <label for="card_number">Numéro de la carte</label>
-                            </div>
-                            <div class="input-field col s12 l8">
-                                <input id="card_expiration_date" type="date" class="validate">
-                                <label for="card_expiration_date">Date d'expiration</label>
-                            </div>
-                            <div class="input-field col s12 l4">
-                                <input id="card_cvv" type="text" class="validate">
-                                <label for="card_cvv">CVV</label>
-                            </div>
-                            <div class="input-field col s12 l6">
-                                <a href="#!" class="btn btn-large waves-effect waves-light grey col s12">Annuler</a>
-                            </div>
-                            <div class="input-field col s12 l6">
-                                <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit" name="action">
-                                    Participer
-                                    <i class="material-icons right">euro_symbol</i>
-                                </button>
-                            </div>
-                          <p>
+                                
         <label>
             {{ form_widget(form.participant.is_anonymous) }}
             <span>Masquer le montant de ma participation auprès des autres participants</span>
         </label>
 </p>
-                       
-                           
-    
+               
+ <h5 class="center">Paiement</h5>
+
+    <div id="card" class="input-field col s12">
+        <input id="card_name" type="text" class="validate">
+        <label for="card_name">Nom sur la carte</label>
+    </div>
+
+    <div id="card-element" class="input-field col s12">
+        <input id="card-element" type="text" class="validate">
+        <label for="card-element" for="card_number">Numéro de la carte</label>
+    </div>
+
+    <div class="input-field col s12 l6">
+        <a href="{{path ('campaign_show', {'id': campaign.id})}}" class="btn btn-large waves-effect waves-light grey col s12">Annuler</a>
+    </div>
+
+    <div class="input-field col s12 l6">
+        <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit">
+            Participer
+            <i class="material-icons right">euro_symbol</i>
+        </button>
+    </div>
+
+
+                   
 {{ form_end(form) }}

@@ -34,4 +34,27 @@
     </div>  
     </div>       
      </div>    
+
+<script>
+
+    let stripe = Stripe("pk_test_51IudYJE6zq9JtjMeicjOrAVK20EPg4tDenbOCJR8qlP9UOTXSyZNFPEc7m6q1I5Gd8LhewzKZapzBhqSN2A20Pv900JLvBFwXS");
+    // The items the customer wants to buy
+    let elements = stripe.elements();
+
+    var style = {
+    base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    color: '#32325d',
+    },
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+        // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+
+</script>
+
 {% endblock %}

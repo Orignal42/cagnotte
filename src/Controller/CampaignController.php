@@ -36,7 +36,10 @@ class CampaignController extends AbstractController
         $campaign = new Campaign();
         $form = $this->createForm(CampaignType::class, $campaign);
         $form->handleRequest($request);
+        // dd($request->request->get('cag_name'));
+        $cag_name = $request->request->get('cag_name');
 
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $campaign->setCreatedAt(new DateTime());
             $campaign->setUpdatedAt(new DateTime());
@@ -50,6 +53,7 @@ class CampaignController extends AbstractController
         return $this->render('campaign/new.html.twig', [
             'campaign' => $campaign,
             'form' => $form->createView(),
+            'cag_name' => $cag_name
         ]);
     }
 

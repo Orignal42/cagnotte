@@ -1,9 +1,20 @@
 {{ form_start(form) }}
-    <div class="input-field col s12 l12">
-         {{ form_widget(form.title) }}
-         {{ form_label(form.title, 'Title', {
+   <div class="input-field col s12 l6">
+
+        {% if cag_name is defined %}
+            {{ form_widget(form.title, {
+                'attr': { 'value' : cag_name}
+            }) }}
+        {% else %}
+            {{ form_widget(form.title, {
+                'attr': {'min': '1'}
+            }) }}
+        {% endif %}
+
+         {{ form_label(form.title, 'titre', {
             'label_attr': {'class': 'title'}
         }) }}
+
     </div>
     <div class="input-field col s12 l12">
          {{ form_widget(form.content) }}

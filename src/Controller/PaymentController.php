@@ -27,8 +27,19 @@ class PaymentController extends AbstractController
         $payment = new Payment();
         $form = $this->createForm(PaymentType::class, $payment);
         $form->handleRequest($request);
-
+        // dd($request->request->get('amount'));
+        $amount = $request->request->get('amount');
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            \Stripe\Stripe::setApiKey('sk_test_51IudYJE6zq9JtjMeKaLVqVeD5DU44TdEw2kFMuak62VLwymNNoUTQpvqJEgaHZCAzh10DAo6f6P9O4bJsLc5qzSY00IVms15NF');
+            $paymentIntent = \Stripe\PaymentIntent::create([
+                'amount' => $payment->getAmount()*100,
+                'currency' => 'eur'
+            ]);
+            $output = [
+                'clientSecret' => $paymentIntent->client_secret,
+            ];
+            
 
             $payment->setCreatedAt(new DateTime());
             $payment->setUpdatedAt(new DateTime());
@@ -50,7 +61,7 @@ class PaymentController extends AbstractController
             'form' => $form->createView(),
             'title'=>$campaign->getTitle(),
             'name'=>$campaign->getName(),
-
+            'amount' => $amount
         ]);
     }
 }

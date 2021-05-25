@@ -47,16 +47,20 @@
             <!-- Participation section -->
             <div class="row">
                 <div class="card col s12 m12 l8 offset-l2">
+                <form action="{{ path('payment_new', {'id': campaign.id }) }}" method="POST">
                     <div class="card-content">
                         <div class="input-field col s12 l6">
-                            <input id="mount" type="number" class="validate">
-                            <label for="mount">Votre participation</label>
+                            <input name="amount" id="amount" type="number" class="validate">
+                            <label for="amount">Votre participation</label>
                         </div>
-                        <a href="{{ path('payment_new', {'id': campaign.id }, true) }}" class="btn-large waves-effect waves-light pink lighten-1 col s12 l6">Participer</a>
+                        <button type="submit" class="btn-large waves-effect waves-light pink lighten-1 col s12 l6">Participer</button>
+                     
                         <div class="clearfix"></div>
+    </form>
                     </div>
                 </div>
             </div>
+           
             <div class="row">
                 <div class="col s12 center">
                     <h4>A propos de la campagne</h4>
