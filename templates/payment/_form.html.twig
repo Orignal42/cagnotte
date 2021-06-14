@@ -1,6 +1,6 @@
 {{ form_start(form) }}
        <h5 class="center">Votre identité</h5>
-     <div class="input-field col s12 l6">
+     <div class="input-field col s12 l12">
 
         {% if amount is defined %}
             {{ form_widget(form.amount, {
@@ -18,13 +18,13 @@
 
     </div>
 
-        <div class="input-field col s12 l12">
+        <div class="input-field col s12 l6">
          {{ form_widget(form.participant.name)}}
          {{ form_label(form.participant.name, 'votre nom', {
             'label_attr': {'class': 'name'}
         }) }}
     </div>
-           <div class="input-field col s12 l12">
+           <div class="input-field col s12 l6">
          {{ form_widget(form.participant.email)}}
          {{ form_label(form.participant.email, 'votre mail', {
             'label_attr': {'class': 'mail'}

@@ -103,6 +103,9 @@
     "nikic/php-parser": {
         "version": "v4.10.5"
     },
+    "paragonie/random_compat": {
+        "version": "v9.99.99"
+    },
     "php": {
         "version": "7.3"
     },
@@ -129,6 +132,9 @@
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "ramsey/uuid": {
+        "version": "3.9.3"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -381,6 +387,9 @@
     "symfony/polyfill-php80": {
         "version": "v1.22.1"
     },
+    "symfony/polyfill-uuid": {
+        "version": "v1.22.1"
+    },
     "symfony/process": {
         "version": "v5.2.7"
     },
@@ -487,6 +496,9 @@
     },
     "symfony/twig-pack": {
         "version": "v1.0.1"
+    },
+    "symfony/uid": {
+        "version": "v5.2.6"
     },
     "symfony/validator": {
         "version": "4.3",

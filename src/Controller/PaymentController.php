@@ -44,7 +44,6 @@ class PaymentController extends AbstractController
             $payment->setCreatedAt(new DateTime());
             $payment->setUpdatedAt(new DateTime());
             $payment->getParticipant()->setCampaignId($campaign);
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($payment);
             $entityManager->flush();
